@@ -18,10 +18,11 @@ def group_files( time ):
     df["Time"]=time
     return df
 
-def plot_bars( df, ax ):
+def plot_bars( df, ax, ):
     ind = range(len(df))
-    ax.bar(ind,df['neg'])
-    ax.bar(ind,df['pos'],bottom=df['neg'])
+    ax.bar(ind,df['neg'],label="neg")
+    ax.bar(ind,df['pos'],bottom=df['neg'], label="pos")
+
 def plot_bar_comp(df,axs):
     ax=axs[0]
     plot_bars(df[df['code']=='C'],ax)
@@ -33,7 +34,8 @@ def plot_bar_comp(df,axs):
     ax.set_ylabel("Number of cells")
     ax.set_xlabel("Field of view")
     ax.text(0.1,0.9,"Treatment",transform=ax.transAxes,fontsize=12);
-    ax.set_ylim(0,1.1*np.max(df['pos']+df['neg']))
+    ax.legend()
+    ax.set_ylim(0,1.2*np.max(df['pos']+df['neg']))
 
 def read_data():
     df1 = group_files(1)
