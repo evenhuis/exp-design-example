@@ -48,14 +48,14 @@ def read_data():
 def plot_pval( pvals ,ax, plot_pvals=True,alpha=0.05,**kwargs):
     tmp=np.reshape( pvals,[-1,2])
     chance_under_thresh = list(map( lambda vec : sum(vec<alpha)/len(vec), pvals[:,:,1]))
-    if(plot_pvals): ax.plot(tmp[:,0]+1*(0.5-np.random.rand(len(tmp[:,0]))),tmp[:,1],'.',color='b' )
+    if(plot_pvals): ax.plot(tmp[:,0]+5*(0.5-np.random.rand(len(tmp[:,0]))),tmp[:,1],'.',color='b' )
     ax.plot( pvals[:,0,0], chance_under_thresh, '-o',color='r')
-    ax.axhline(0.05,dashes=(5,5),color='red')
-    ax.set_ylabel('p-values',color='b')
-    ax.tick_params('y', colors='b')
+    #ax.axhline(0.05,dashes=(5,5),color='blue')
+    ax.set_ylabel('p-values',color='b',fontsize=16)
     ax.set_ylim(0,1)
     
     ax2=ax.twinx()
     ax2.set_ylim(0,100)
-    ax2.set_ylabel('Chance of sig',color='r')
+    ax2.set_ylabel('Chance of sig',color='r',fontsize=16)
     ax2.tick_params('y', colors='r')
+
